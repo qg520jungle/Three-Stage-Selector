@@ -1,7 +1,4 @@
 .DS_Store
 /node_modules
 *.log
-package.json
 /Jinja2-2.8
-compile.json
-gulpfile.js
