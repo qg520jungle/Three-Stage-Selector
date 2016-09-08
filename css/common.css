@@ -62,9 +62,9 @@ input:-moz-placeholder {
   background-color: #fff;
   color: #333;
   border: .1rem solid #333;
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   text-align: center;
-  border-radius: .6rem;
+  border-radius: .4rem;
   cursor: pointer;
 }
 .u-btn:hover {
@@ -73,9 +73,12 @@ input:-moz-placeholder {
   color: #000;
 }
 .btn-main {
-  border: .1rem solid #efefef;
-  background-color: #fff;
-  color: #333;
+  border: 0.2rem solid #0f88eb;
+  background-color: #0f88eb;
+  color: #fff;
+}
+.btn-normal {
+  width: 100%;
 }
 .s-title {
   font-size: 1.6rem;
@@ -105,8 +108,8 @@ input:-moz-placeholder {
 }
 .u-input {
   display: inline-block;
-  width: 94.7%;
-  border: 0.2rem solid #e8e8e8;
+  width: 100%;
+  border: 0rem solid #e8e8e8;
   border-radius: .4rem;
   padding-left: 4.2rem;
   height: 3.5rem;
@@ -114,8 +117,16 @@ input:-moz-placeholder {
   font-size: 2.5rem;
   text-align: left;
 }
+.u-input.z-error {
+  border: .1rem solid red;
+}
 .u-label {
   cursor: pointer;
+}
+.u-info {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 /* 箭头 */
 .u-popover .arrow,
@@ -220,6 +231,9 @@ input:-moz-placeholder {
 .f-hd {
   display: none;
 }
+.f-pr {
+  position: relative;
+}
 .f-tc {
   text-align: center;
 }
@@ -249,6 +263,7 @@ input:-moz-placeholder {
   top: 2.8rem;
   left: 0;
   right: 0;
+  bottom: 0;
 }
 .m-list-nav .item {
   float: left;
@@ -287,6 +302,56 @@ input:-moz-placeholder {
   width: 60%;
 }
 .m-login {
+  width: 25rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  text-align: center;
+}
+.m-login .title {
+  height: 3rem;
+  line-height: 3rem;
+  background-color: #fff;
+}
+.m-login .tab {
+  display: inline-block;
+  color: #ccc;
+  font-size: 2.0rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-bottom: .3rem solid transparent;
+  cursor: pointer;
+}
+.m-login .tab.z-act,
+.m-login .tab.z-act:hover {
+  color: #0f88eb;
+  border-bottom: 0.2rem solid #0f88eb;
+}
+.m-login .tab:hover {
+  color: #aaa;
+}
+.m-login .tab-box li {
+  margin: .5rem 0;
+}
+.m-login .tab-box li.link {
+  text-align: right;
+  font-size: 1.8rem;
+}
+.v-msg {
+  position: absolute;
+  bottom: 0;
+  display: none;
+  background: #000;
+  filter: alpha(opacity=50);
+  opacity: .5;
+  font-size: 1.8rem;
   width: 100%;
-  height: 100%;
+  padding: 0.8rem;
+  text-align: center;
+}
+.v-msg .cc {
+  display: inline-block;
+  font-size: 1.6rem;
+  height: 2rem;
+  line-height: 2rem;
+  color: #fff;
 }

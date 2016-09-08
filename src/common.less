@@ -54,7 +54,63 @@
   }
 }
 .m-login{
+  width: 25rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  text-align: center;
+  .title{
+    height: 3rem;
+    line-height: 3rem;
+    background-color: #fff;
+  }
+  .tab-list{
+
+  }
+  .tab{
+    display:inline-block;
+    color: #ccc;
+    font-size: 2.0rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-bottom: .3rem solid transparent;
+    cursor: pointer;
+    &.z-act,&.z-act:hover{
+      color: @color-main;
+      border-bottom: .2rem solid @color-main;
+    }
+    &:hover{
+      color: #aaa;
+    }
+  }
+  .tab-box{
+    li{
+      margin: .5rem 0;
+      &.link{
+        text-align: right;
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+.v-msg{
+  position: absolute;
+  bottom: 0;
+  display: none;
+  background: #000;
+  filter: alpha(opacity=50);
+  opacity: .5;
+  font-size: 1.8rem;
   width: 100%;
-  height: 100%;
+  padding: 0.8rem;
+  text-align:center;
+  .cc{
+    display: inline-block;
+    font-size: 1.6rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: #fff;
+  }
+  
+
 }
 

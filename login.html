@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="./css/common.css">
 	<script src="./js/jquery-1.11.3.js"></script>
 	<script src = "https://cdn.wilddog.com/sdk/js/2.0.0/wilddog.js"></script>
+	<script src="./js/jquery.formCheck.js"></script>
 </head>
 <body>
 	
@@ -21,56 +22,132 @@
 				来自祥庚
 			</div>
 			<div class="content">
-				<ul class="tab-list">
-					<li class="tab z-act" signin>
+				<ul class="tab-list ">
+					<li class="tab  z-act" sign="signin">
 						注册
 					</li>
-					<li class="tab " login>
+					<li class="tab " sign="login">
 						登陆
 					</li>
 				</ul>
 				<div class="tab-box" signin>
 					<ul>
-						<li>
+						<li class="f-pr">
 							<span class="t"></span>
-							<input type="text" class="u-input u-input-normal" placeholder="新用户名">
+							<input type="text" class="u-input u-input-normal v-mail" id="nHost"  placeholder="新用户名">
 						</li>
 						<li>
 							<span class="t"></span>
-							<input type="text" class="u-input u-input-normal" placeholder="密码" >
+							<input type="text" class="u-input u-input-normal v-psw" id="psw"  placeholder="密码" >
 						</li>
 						
 						<li>
 							<span class="t"></span>
-							<input type="text" class="u-input u-input-normal" placeholder="确认密码">
+							<input type="text" class="u-input u-input-normal v-repsw" id="repsw"  placeholder="确认密码">
 						</li>
-						<li><span class="btn u-btn btn-main">注册</span></li>
+						<li><span class="btn u-btn btn-normal btn-main j-signin">注册</span></li>
 					</ul>	
 				</div>	
 				<div class="tab-box f-dn" login >
 					<ul>
 						<li>
 							<span class="t"></span>
-							<input type="text" class="u-input u-input-normal" placeholder="用户名">
+							<input type="text" class="u-input u-input-normal v-mail" id="host" placeholder="用户名">
 						</li>
 						<li>
 							<span class="t"></span>
-							<input type="text" class="u-input u-input-normal" placeholder="密码" >
+							<input type="text" class="u-input u-input-normal v-pswlogin" id="password"  placeholder="密码" >
 						</li>
 						
-						<li>忘记密码</li>
-						<li><span class="btn u-btn btn-main">登陆</span></li>
+						<li class="link"><a href="javascript:void(0);" class="s-link">忘记密码</a></li>
+						<li><span class="btn u-btn btn-normal btn-main">登陆</span></li>
 					</ul>	
 				</div>
 			</div>
+			
+		</div>
+		<div class="v-msg">
+				<span class="cc">似乎出了什么问题……</span>
 		</div>
 	</div>
-
+		
 	<script src="./js/login.js">
 	</script>
 		
 	<script>
-		
+	$('.v-mail').on('change', function () {
+        $(this).formCheck({checkModel: 'emailCheck'});
+    })
+    $('.v-psw').on('change', function () {
+        $(this).formCheck({checkModel: 'easypswCheck'});
+        if(this.resultBool){theSamePsw($('.v-psw'),$('.v-repsw'))}
+    })
+    $('.v-pswlogin').on('change', function () {
+        $(this).formCheck({checkModel: 'easypswCheck'});
+    })
+    
+     $('.v-repsw').on('change', function () {
+        $(this).formCheck(
+            {
+                checkModel: 'easypswCheck',
+                msg: '确认密码有误，应与密码相同',
+                emptyMsg: '请填写确认密码'
+            }
+        );
+        if(this.resultBool){theSamePsw($('.v-psw'),$('.v-repsw'))}
+    })
+    //判断重复输入是一样的
+    function theSamePsw($psw,$repsw){
+    	if($psw.val()&&$repsw.val()){
+	    	if(!($psw.val()==$repsw.val())){
+				$('.v-msg .cc').html('密码两次输入不一致')
+				$('.v-msg').show();
+				$repsw.addClass('z-error')
+				return false
+	    	}else{
+				$repsw.removeClass('z-error')
+	    		return true
+	    	}
+    	}else{return false}
+    }
+
+    //判断通过，才可以点击注册
+    function checkAll(){
+    	if($('.v-mail').get(0).resultBool){}else{
+	    	 $('.v-mail').formCheck({checkModel: 'emailCheck'}
+	        );
+	    	 if(!$('.v-mail').get(0).resultBool){return false}
+    	 }
+	 	if($('.v-psw').get(0).resultBool){}else{
+	    	$('.v-psw').formCheck({checkModel: 'easypswCheck'});
+	        if(!$('.v-psw').get(0).resultBool){return false}
+	    }
+	    if($('.v-repsw').get(0).resultBool){}else{
+	    	$('.v-repsw').formCheck(
+	            {
+	                checkModel: 'easypswCheck',
+	                msg: '确认密码有误，应与密码相同',
+	                emptyMsg: '请填写确认密码'
+	            }
+	        );
+	        if(!$('.v-repsw').get(0).resultBool){return false}
+	    }
+    	 if(theSamePsw($('.v-psw'),$('.v-repsw'))){}else{return false}
+    	 return true
+    }
+    //判断通过才能登录
+    function checkAllLogin(){
+    	if($('.v-mail').get(0).resultBool){}else{
+	    	 $('.v-mail').formCheck({checkModel: 'emailCheck'}
+	        );
+	    	 if(!$('.v-mail').get(0).resultBool){return false}
+    	 }
+	 	if($('.v-pswlogin').get(0).resultBool){}else{
+	    	$('.v-pswlogin').formCheck({checkModel: 'easypswCheck'});
+	        if(!$('.v-pswlogin').get(0).resultBool){return false}
+	    }
+    	return true
+    }
 	</script>
 </body>
 </html> 
